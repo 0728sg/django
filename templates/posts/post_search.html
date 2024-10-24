@@ -1,0 +1,36 @@
+<h1>Posts</h1>
+
+<!-- Search form -->
+<form method="GET" action="{% url 'post_list' %}">
+    <input type="text" name="search" value="{{ search_query }}" placeholder="Search posts...">
+    <button type="submit">Search</button>
+</form>
+
+<!-- Display posts -->
+<ul>
+    {% for post in page_obj %}
+        <li>
+            <a href="{% url 'post_detail' post.id %}">{{ post.title }}</a>
+            <p>{{ post.content|truncatewords:20 }}</p>
+        </li>
+    {% empty %}
+        <li>No posts found.</li>
+    {% endfor %}
+</ul>
+
+<!-- Pagination controls -->
+<div class="pagination">
+    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+    <div>
+        <span>
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}&search={{ search_query }}">Previous</a>
+            {% endif %}
+        </span>
+        <span>
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}&search={{ search_query }}">Next</a>
+            {% endif %}
+        </span>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+<h1>{{ profile.user.username }}'s Profile</h1>
+<img src="{{ profile.profile_picture.url }}" alt="Profile Picture" />
+<p>{{ profile.bio }}</p>
+
+<h2>Your Posts</h2>
+<ul>
+    {% for post in posts %}
+        <li>
+            <a href="{% url 'post_detail' post.id %}">{{ post.title }}</a>
+        </li>
+    {% empty %}
+        <li>No posts available.</li>
+    {% endfor %}
+</ul>

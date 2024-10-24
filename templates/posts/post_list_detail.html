@@ -1,0 +1,22 @@
+{% extends 'navbar.html' %}
+{% load static %}
+{% block content %}
+
+<h1>Post Detail:</h1>
+{% if post.image %}
+<img src="/media/{{ post.image }}" class="card-img-top" alt="...">
+{% else %}
+<img src="{% static 'not_found.jpg' %}" class="card-img-top" alt="...">
+{% endif %}
+
+<h2>Title: {{ post.title }}</h2>
+<p>Content: {{ post.content }}</p>
+<p>Created: {{ post.created_at }}</p>
+<p>Updated: {{ post.updated_at }}</p>
+<p>Rate: {{ post.rate }}</p>
+<p>Rate: {{ post.category }}</p>
+          {% for tag in post.tags.all %}
+          <a href="#" class="btn btn-secondary">{{ i }}</a>
+          {% endfor %}
+
+{% endblock %}

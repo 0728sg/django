@@ -1,0 +1,8 @@
+.idea
+__pycache__\
+__pycache__
+.vs
+.venv
+.env
+test.py
+test2.py
